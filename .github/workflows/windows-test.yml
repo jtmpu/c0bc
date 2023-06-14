@@ -1,11 +1,16 @@
 name: Tests windows
 
-on: [pull_request]
+on: 
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_run:
+    workflows: [Linting]
+    types:
+      - completed
 
 jobs:
   tests:
     runs-on: windows-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
