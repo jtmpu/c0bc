@@ -1,12 +1,6 @@
 name: Tests windows
 
-on: 
-  pull_request:
-    types: [opened, synchronize, reopened]
-  workflow_run:
-    workflows: [Linting]
-    types:
-      - completed
+on: [pull_request]
 
 jobs:
   tests:
