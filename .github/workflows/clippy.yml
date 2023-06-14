@@ -1,4 +1,4 @@
-name: CI - Linting & Formatting
+name: CI - fmt and clippy
 
 on: [pull_request]
 

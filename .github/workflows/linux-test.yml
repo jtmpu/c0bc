@@ -1,8 +1,10 @@
-name: CI - Tests linux
+name: CI - tests linux
 
 on: 
   workflow_run:
-    workflows: ["CI - Linting & Formatting"]
+    workflows: ["CI - fmt and clippy"]
+    types:
+      - completed
 
 jobs:
   tests:
