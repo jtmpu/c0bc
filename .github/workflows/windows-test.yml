@@ -1,10 +1,6 @@
 name: Tests windows
 
-on: 
-  workflow_run:
-    workflows: [Linting]
-    types:
-      - completed
+on: [pull_request]
 
 jobs:
   tests:
