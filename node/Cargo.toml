@@ -1,0 +1,9 @@
+[package]
+name = "node"
+version = "0.1.0"
+readme = "README.md"
+authors = [""]
+
+[[bin]]
+name = "node"
+path = "src/main.rs"
