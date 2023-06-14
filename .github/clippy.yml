@@ -1,0 +1,16 @@
+name: CI - Clippy
+
+on: [pull_request]
+
+jobs:
+  clippy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: -- -W clippy::all -D warnings
