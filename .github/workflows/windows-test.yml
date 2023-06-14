@@ -1,14 +1,15 @@
-name: CI - tests windows
+name: Tests windows
 
 on: 
   workflow_run:
-    workflows: ["CI - fmt and clippy"]
+    workflows: [Linting]
     types:
       - completed
 
 jobs:
   tests:
     runs-on: windows-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
