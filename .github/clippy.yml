@@ -1,4 +1,4 @@
-name: CI - Clippy
+name: CI - Linting & Formatting
 
 on: [pull_request]
 
@@ -10,7 +10,5 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-      - uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-          args: -- -W clippy::all -D warnings
+      - run: cargo fmt --all -- --check
+      - run: cargo clippy -- -W clippy::all -D warnings
