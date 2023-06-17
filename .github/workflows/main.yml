@@ -1,9 +1,10 @@
-name: Tests linux
-
-on: [pull_request]
-
+name: Build main
+on:
+  push:
+    branches:
+      - main
 jobs:
-  tests:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -12,5 +13,5 @@ jobs:
           toolchain: stable
       - uses: actions-rs/cargo@v1
         with:
-          command: test
+          command: build
           args: --workspace
