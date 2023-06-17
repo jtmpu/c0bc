@@ -37,3 +37,25 @@ jobs:
   mark-valid:
     runs-on: ubuntu-latest
     needs: [tests-windows, tests-linux]
+    steps:
+      - uses: actions/github-script@v6
+        env:
+          parameter_url: '${{ github.event.workflow_run.html_url }}'
+        with:
+          script: |
+            await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head_sha: context.sha,
+              name: "my-check-name",
+              status: "completed",
+              // Careful, code injection can happen.
+              conclusion: "${{ github.event.workflow_run.conclusion }}",
+              // This is safe, not string interpolation.
+              details_url: process.env.parameter_url,
+              output: {
+                title: "All checks passed",
+                summary: "",
+                text: "",
+              },
+            });
