@@ -34,28 +34,3 @@ jobs:
         with:
           command: test
           args: --workspace
-  mark-valid:
-    runs-on: ubuntu-latest
-    needs: [tests-windows, tests-linux]
-    permissions:
-      statuses: write
-      checks: write
-    steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            await github.rest.checks.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              head_sha: context.sha,
-              name: "ci-checks",
-              status: "completed",
-              // Careful, code injection can happen.
-              conclusion: "success",
-              // This is safe, not string interpolation.
-              output: {
-                title: "All checks passed",
-                summary: "success",
-                text: "success",
-              },
-            });
