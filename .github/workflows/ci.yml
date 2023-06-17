@@ -42,8 +42,6 @@ jobs:
       checks: write
     steps:
       - uses: actions/github-script@v6
-        env:
-          parameter_url: '${{ github.event.workflow_run.html_url }}'
         with:
           script: |
             await github.rest.checks.create({
@@ -55,7 +53,6 @@ jobs:
               // Careful, code injection can happen.
               conclusion: "success",
               // This is safe, not string interpolation.
-              details_url: process.env.parameter_url,
               output: {
                 title: "All checks passed",
                 summary: "success",
