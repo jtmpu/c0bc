@@ -37,6 +37,8 @@ jobs:
   mark-valid:
     runs-on: ubuntu-latest
     needs: [tests-windows, tests-linux]
+    permissions:
+      statuses: write 
     steps:
       - uses: actions/github-script@v6
         env:
