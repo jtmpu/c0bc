@@ -34,3 +34,6 @@ jobs:
         with:
           command: test
           args: --workspace
+  mark-valid:
+    runs-on: ubuntu-latest
+    needs: [tests-windows, tests-linux]
